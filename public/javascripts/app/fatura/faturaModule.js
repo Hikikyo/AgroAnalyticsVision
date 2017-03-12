@@ -1,0 +1,1 @@
+var faturaModule = angular.module("faturaModule", []);

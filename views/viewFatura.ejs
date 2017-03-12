@@ -1,0 +1,55 @@
+<% include layout %>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title"> <%=title %></h3>
+    </div>
+</div>
+
+<br>
+
+<div
+    data-ng-app="faturaModule"
+    data-ng-controller="viewFaturaController">
+
+    <div class="container-fluid">
+        <table
+            class="table table-striped table-hover">
+            <tr class="success">
+                <td>Código Fatura</td>
+                <td>Código Lote</td>
+                <td>Data de Vencimento</td>
+                <td>Valor Líquido</td>
+                <td>Ações</td>
+            </tr>
+
+            <tr data-ng-repeat="fatura in faturas">
+                <td>{{fatura.codigo_fatura}}</td>
+                <td>{{fatura.codigo_lote}}</td>
+                <td>{{fatura.data_vencimento}}</td>
+                <td>{{fatura.valor_liquido_fatura}}</td>
+                <td class="info">
+                    <!-- Single button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Editar Fatura <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Editar</a></li>
+                            <li><a href="#">Ver detalhes</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="danger">Deletar</a></li>
+                        </ul>    
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="javascripts/app/fatura/faturaModule.js"></script>
+<script src="javascripts/app/fatura/faturaService.js"></script>
+<script src="javascripts/app/fatura/viewFaturaController.js"></script>
+
+

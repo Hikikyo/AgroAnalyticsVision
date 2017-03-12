@@ -1,0 +1,156 @@
+<% include layout %>
+
+<div class="container-fluid">
+
+    <ol class="breadcrumb">
+    <li><a href="/" style="color: green">Home</a></li>
+    <li><a href="#" style="color: green">Library</a></li>
+    <li class="active">Data</li>
+    </ol>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"> <%=title %></h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="container-fluid"
+                    data-ng-cloak
+                    data-ng-app="faturaModule"
+                    data-ng-controller="createFaturaController">
+                
+                    <form
+                        class="navbar-form navbar-left" role="search"
+                        method="POST"
+                        name="formFatura">
+                        
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="">Código do Lote   </label>
+                                    &nbsp;&nbsp;  
+                                    <input type=""
+                                    class="form-control"
+                                    placeholder="Digite o código do lote"
+                                    name="codigo_lote"
+                                    id="codigo_lote"
+
+                                    ng-model="fatura.codigo_lote"
+
+                                    style="width:100%"
+
+                                    required
+                                    >
+                            </div>
+                            </div>
+                        </div>
+                        &nbsp; 
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="">Código do Contrato</label>
+                                    &nbsp;&nbsp;  
+                                    <input type=""
+                                    class="form-control"
+                                    placeholder="Digite o código do contrato"
+                                    name="codigo_contrato"
+                                    id="codigo_contrato"
+
+                                    ng-model="fatura.codigo_contrato"
+
+                                    style="width:100%"
+
+                                    required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        &nbsp;
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="">Código da Regra de Faturamento</label>
+                                    &nbsp;&nbsp;  
+                                    <input type=""
+                                    class="form-control"
+                                    placeholder="Digite o código da regra"
+                                    name="codigo_regra_fat"
+                                    id="codigo_regra_fat"
+
+                                    ng-model="fatura.codigo_regra_fat"
+
+                                    style="width:100%"
+
+                                    required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        &nbsp;
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="">Data de vencimento</label>
+                                    &nbsp;&nbsp;  
+                                    <input type="date"
+                                    class="form-control"
+                                    placeholder="yyyy-mm-dd"
+                                    name="data_vencimento"
+                                    id="data_vencimento"
+
+                                    ng-model="fatura.data_vencimento"
+
+                                    style="width:100%"
+
+                                    required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        &nbsp;
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="">Valor Bruto</label>
+                                    &nbsp;&nbsp;  
+                                    <div class="input-group">
+                                        <span class="input-group-addon">R$</span>
+                                        <input type=""
+                                        class="form-control"
+                                        placeholder="00.00"
+                                        name="valor_bruto_fatura"
+                                        id="valor_bruto_fatura"
+
+                                        ng-model="fatura.valor_bruto_fatura"
+
+                                        style="width:100%"
+
+                                        required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <div>&nbsp;</div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group" style="width:100%">
+                                    <button type="button" class="btn btn-success"
+                                    ng-click="createFatura(fatura)"
+                                    
+                                    ><b>Emitir Fatura</b>&nbsp;&nbsp;<i class="fa fa-share-square" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="javascripts/app/fatura/faturaModule.js"></script>
+<script src="javascripts/app/fatura/faturaService.js"></script>
+<script src="javascripts/app/fatura/createFaturaController.js"></script>
