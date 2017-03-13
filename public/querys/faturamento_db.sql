@@ -9,8 +9,7 @@
 
 #--Ainda falta testar.
 
-CREATE DATABASE faturamento;
-USE faturamento;
+USE heroku_5861d0673438130;
 
 #start transaction
 #	begin
