@@ -1,0 +1,1 @@
+INSERT INTO faturamento.servico (nome_servico) VALUES ('Venda de unidade imobiliária'),('Prestação de Serviço')

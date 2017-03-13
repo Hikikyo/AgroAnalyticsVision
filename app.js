@@ -33,6 +33,8 @@ var faturaRoute = require('./routes/faturaRouteConfig.js')
 new faturaRoute(app);
 var impostoRoute = require('./routes/impostoRouteConfig.js')
 new impostoRoute(app);
+var regraRoute = require('./routes/regraRouteConfig.js')
+new regraRoute(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

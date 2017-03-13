@@ -30,8 +30,6 @@ function viewImpostoController($scope, $timeout, $window, impostoService) {
     }
 
     $scope.deleteImposto = function(codigo_imposto) {
-            console.log(codigo_imposto)
-            console.log("Passei Aqui!")
             impostoService.deleteImposto(codigo_imposto)
             .then(function (data) {
                 /* $timeout(function () {

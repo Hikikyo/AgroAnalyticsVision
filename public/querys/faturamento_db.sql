@@ -8,8 +8,8 @@
 
 
 #--Ainda falta testar.
-
-USE heroku_5861d0673438130;
+CREATE DATABASE faturamento;
+USE faturamento;
 
 #start transaction
 #	begin
@@ -46,6 +46,7 @@ CREATE TABLE lote_fatura (
 DROP TABLE IF EXISTS regra_faturamento;
 CREATE TABLE regra_faturamento (
 	codigo_regra_fat int primary key NOT NULL UNIQUE AUTO_INCREMENT,
+    nome_regra varchar(32) NOT NULL,
 	codigo_servico int NOT NULL
 );
 
@@ -57,12 +58,20 @@ CREATE TABLE imposto (
 	taxa_imposto decimal(4,4) NOT NULL
 );
 
-#--#4 - 
+#--#5 - 
 DROP TABLE IF EXISTS regra_imposto;
 CREATE TABLE regra_imposto (
 	codigo_imposto int NOT NULL,
 	codigo_regra_fat int NOT NULL
 );
+
+#--#5 - 
+DROP TABLE IF EXISTS servico;
+CREATE TABLE servico (
+	codigo_servico int primary key NOT NULL UNIQUE AUTO_INCREMENT,
+	nome_servico varchar(32) NOT NULL
+);
+
 
 
 #---------------------------------------------------------------
@@ -70,12 +79,15 @@ CREATE TABLE regra_imposto (
 
 #--Adding Foreign Keys
 
-ALTER TABLE fatura
-ADD FOREIGN KEY (codigo_lote) REFERENCES lote_fatura(codigo_lote),
-ADD FOREIGN KEY (codigo_regra_fat) REFERENCES regra_faturamento(codigo_regra_fat);
+#ALTER TABLE fatura
+#ADD FOREIGN KEY (codigo_lote) REFERENCES lote_fatura(codigo_lote),
+#ADD FOREIGN KEY (codigo_regra_fat) REFERENCES regra_faturamento(codigo_regra_fat);
 
-ALTER TABLE regra_imposto
-ADD FOREIGN KEY (codigo_imposto) REFERENCES imposto(codigo_imposto),
-ADD FOREIGN KEY (codigo_regra_fat) REFERENCES regra_faturamento(codigo_regra_fat);
+#ALTER TABLE regra_imposto
+#ADD FOREIGN KEY (codigo_imposto) REFERENCES imposto(codigo_imposto),
+#ADD FOREIGN KEY (codigo_regra_fat) REFERENCES regra_faturamento(codigo_regra_fat);
+
+#ALTER TABLE regra_imposto
+#DROP FOREIGN KEY regra_imposto_ibfk_2;
 
 #commit;

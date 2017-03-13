@@ -1,0 +1,109 @@
+<% include layout-top %>
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><%=title %></h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <ol class="breadcrumb">
+            <li><a href="/" >Home</a></li>
+            <li class="active"><%=title %></li>
+        </ol>
+        <div class="row"
+             data-ng-app="regraModule"
+             data-ng-controller="viewRegraController">
+
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <table
+                    class="table table-striped jambo_table bulk_action">
+                    <thead>
+                        <tr class="headings">
+                            <th class="column-title">Código</th>
+                            <th class="column-title">Nome da Regra</th>
+                            <th class="column-title">Nome do Serviço</th>
+                            <th class="column-title">Ação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="even pointer" data-ng-repeat="regra in regras">
+                            <td>{{regra.codigo_regra_fat}}</td>
+                            <td>{{regra.nome_regra}}</td>
+                            <td>{{regra.nome_servico}}</td>
+                            <td>
+                                <!-- Single button -->
+                                <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-default" ng-click="redirectUpdateImposto(imposto.codigo_imposto)">Editar&nbsp; <i class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#atencao" ng-click="setIdToDelete(regra.codigo_regra_fat)"> <i class="fa fa-trash-o"></i></button>
+                                    </div>    
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Modal - VERIFICAÇÃO -->
+                                <div id="atencao" class="modal fade" role="dialog" class="form-group">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" style="color: red" aria-hidden="true"></i>&nbsp;Atenção!</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Você tem certeza que deseja deletar a regra?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" 
+                                                data-toggle="modal" data-target="#sucesso" ng-click="deleteRegra(id_delete)">Sim</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                                    </div>
+                                    </div>
+
+                                </div>
+                                </div>
+
+                                <!-- Modal - SUCESSO-->
+                                <div id="sucesso" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><i class="fa fa-check" style="color: green" aria-hidden="true"></i> &nbsp;Operação Efetuada com sucesso</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>A regra foi deletado com sucesso.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" ng-click="redirectViewRegra()" >Confirmar</button>
+                                    </div>
+                                    </div>
+
+                                </div>
+                                </div>
+                                <!-- /page content -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>          
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<% include layout-bottom %>
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="javascripts/app/regra/regraModule.js"></script>
+<script src="javascripts/app/regra/regraService.js"></script>
+<script src="javascripts/app/regra/viewRegraController.js"></script>
+
+
