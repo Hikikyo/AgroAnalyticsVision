@@ -6,7 +6,7 @@ var mysqlConnectionStringProvider = {
 
     getMySqlConnection : function () {
 
-        var connection = mysql.createConnection(mysqlConnectionString.mysqlConnectionString.connection.heroku);
+        var connection = mysql.createConnection(mysqlConnectionString.mysqlConnectionString.connection.dev);
 
         connection.connect(function (err) {
 
