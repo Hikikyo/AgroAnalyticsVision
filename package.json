@@ -12,8 +12,22 @@
     "ejs": "^2.5.6",
     "express": "~4.13.4",
     "jade": "~1.11.0",
+    "mongodb": "^2.2.33",
     "morgan": "~1.7.0",
     "mysql": "2.5.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tykuwae/faturamento.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tykuwae/faturamento/issues"
+  },
+  "homepage": "https://github.com/tykuwae/faturamento#readme",
+  "description": ""
 }
