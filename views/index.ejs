@@ -5,13 +5,21 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Multilevel Menu <small> Page to demonstrate multilevel menu</small></h3>
-                		  <form action="/teste" method="get">
-		    <h2>Button</h2>
-		    <p>Vai dar certo</p>
-		    <button type="submit" class="btn btn-primary">Default</button>
-		  </form>
-		  <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Estados
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#"><%= states[0].name %></a></li>
+                  </ul>
+                </div>
+
+                <div ng-app="myApp" ng-controller="myCtrl">
+                  <h1 ng-repeat="x in records">{{x}}</h1>
+                </div>
+
+          		  <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+
               </div>
             </div>
           </div>
@@ -34,4 +42,16 @@
     };
     var data = [trace1, trace2];
     Plotly.newPlot('myDiv', data);
+</script>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope) {
+        $scope.records = [
+            "Alfreds Futterkiste",
+            "Berglunds snabbköp",
+            "Centro comercial Moctezuma",
+            "Ernst Handel",
+        ]
+    });
 </script>
