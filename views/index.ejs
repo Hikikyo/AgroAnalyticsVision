@@ -1,24 +1,42 @@
 <% include layout-top %>
 
+<script>
+    var myFunction = function() {
+
+      var e = document.getElementById('app');     
+      var $scope = angular.element(e).scope();
+      $scope.payload = {
+        "content": {
+          "graph": $scope.graph
+        }
+      };
+      $scope.$apply();
+    };
+</script>
+
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
+              
+                <div ng-app="App">               
+                  <div ng-controller="stateController">
+                    <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Estados
+                      <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a ng-repeat="state in states" href="{{state.id}}">{{state.name}}</a></li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Estados
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#"><%= states[0].name %></a></li>
-                  </ul>
+                  <div ng-controller="plotController">
+                    <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+                    <p>{{graph}}</p>                 
+                  </div>
                 </div>
 
-                <div ng-app="myApp" ng-controller="myCtrl">
-                  <h1 ng-repeat="x in records">{{x}}</h1>
-                </div>
-
-          		  <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
 
               </div>
             </div>
@@ -28,6 +46,10 @@
 <!-- /page content -->
 
 <% include layout-bottom %>
+
+<script src="javascripts/app/controllers/app.js"></script>
+<script src="javascripts/app/controllers/plotController.js"></script>
+<script src="javascripts/app/controllers/stateController.js"></script>
 
 <script>
     var trace1 = {
@@ -42,16 +64,4 @@
     };
     var data = [trace1, trace2];
     Plotly.newPlot('myDiv', data);
-</script>
-
-<script>
-    var app = angular.module("myApp", []);
-    app.controller("myCtrl", function($scope) {
-        $scope.records = [
-            "Alfreds Futterkiste",
-            "Berglunds snabbköp",
-            "Centro comercial Moctezuma",
-            "Ernst Handel",
-        ]
-    });
 </script>
