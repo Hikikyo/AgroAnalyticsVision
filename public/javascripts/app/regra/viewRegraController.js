@@ -52,15 +52,11 @@ function viewRegraController($scope, $timeout, $window, regraService) {
     }
 
     $scope.redirectViewRegra = function() {
-        
         $window.location.href = '/viewRegra';
-        
-        }
-    
-    $scope.redirectHome = function() {
-
-        $window.location.href = '/';
-        
-        }
-
     }
+
+    $scope.redirectHome = function() {
+        $window.location.href = '/';
+    }
+
+}

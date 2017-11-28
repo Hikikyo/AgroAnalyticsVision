@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var request = require('request');
+require('dotenv').config();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(request);
 
 app.use('/', routes);
 app.use('/users', users);
@@ -35,6 +38,10 @@ var impostoRoute = require('./routes/impostoRouteConfig.js')
 new impostoRoute(app);
 var regraRoute = require('./routes/regraRouteConfig.js')
 new regraRoute(app);
+
+// request('http://localhost:3000/api/v1/federal_units', function (error, response, body) {
+//   console.log(body);
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,12 +1,10 @@
 function regraRouteConfig (app) {
-
     this.app = app;
     this.routeTable = [];
     this.init();
 }
 
 regraRouteConfig.prototype.init = function () {
-
     var self = this;
 
     this.addRoutes();
@@ -14,7 +12,6 @@ regraRouteConfig.prototype.init = function () {
 }
 
 regraRouteConfig.prototype.processRoutes = function () {
-
     var self = this;
 
     self.routeTable.forEach(function(route) {
@@ -33,36 +30,29 @@ regraRouteConfig.prototype.processRoutes = function () {
 }
 
 regraRouteConfig.prototype.addRoutes = function () {
-
     var self = this;
 
 /* PAGES ------------------------------------------------------------------------------------------------------------------------------------------------- */
     self.routeTable.push({
-        
         requestType : 'get',
         requestUrl : '/createRegra',
         callbackFunction : function (request, response) {
-
             response.render('createRegra',  { title : "Cadastro de Regra de Faturamento"});
         }
 
     })
     self.routeTable.push({
-        
         requestType : 'get',
         requestUrl : '/viewRegra',
         callbackFunction : function (request, response) {
-
             response.render('viewRegra',  { title : "Consulta de Regras de Faturamento"});
         }
 
     })
     self.routeTable.push({
-        
         requestType : 'get',
         requestUrl : '/editRegra',
         callbackFunction : function (request, response) {
-
             response.render('editRegra',  { title : "Edição de regras do regra"});
         }
 
@@ -70,7 +60,6 @@ regraRouteConfig.prototype.addRoutes = function () {
 /* GET METHODS ------------------------------------------------------------------------------------------------------------------------------------------- */
     /* PROCURA TODOS OS SERVICOS */
     self.routeTable.push({
-        
         requestType : 'get',
         requestUrl : '/getAllServicos',
         callbackFunction : function (request, response) {
@@ -86,7 +75,6 @@ regraRouteConfig.prototype.addRoutes = function () {
     })
     /* PROCURA TODOS OS REGRAS */
     self.routeTable.push({
-        
         requestType : 'get',
         requestUrl : '/getAllRegras',
         callbackFunction : function (request, response) {
@@ -103,7 +91,6 @@ regraRouteConfig.prototype.addRoutes = function () {
 /* POST METHODS ------------------------------------------------------------------------------------------------------------------------------------------- */
    /* CRIA REGRA */
     self.routeTable.push({
-        
         requestType : 'post',
         requestUrl : '/createRegra',
         callbackFunction : function (request, response) {
@@ -120,7 +107,6 @@ regraRouteConfig.prototype.addRoutes = function () {
     })
     /* DELETA REGRA */
     self.routeTable.push({
-        
         requestType : 'post',
         requestUrl : '/deleteRegra/:codigo_regra_fat',
         callbackFunction : function (request, response) {

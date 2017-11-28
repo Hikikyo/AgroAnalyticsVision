@@ -1,12 +1,9 @@
 angular.module("regraModule")
 .factory("regraService", regraService);
 
-
 regraService.$inject = ['$http'];
 
-
 function regraService($http) {
-
     var codigo_regra = "";
 
     return {
@@ -15,7 +12,7 @@ function regraService($http) {
             return $http.post('/createRegra', regra);
         },
         editRegra : function (regra) {
-            return $http.post('/editRegra/' + regra.codigo_regra_fat, 
+            return $http.post('/editRegra/' + regra.codigo_regra_fat,
                 {
                 nome_regra : regra.nome_regra,
                 taxa_regra : regra.taxa_regra/100
@@ -36,6 +33,9 @@ function regraService($http) {
         },
         getRegra : function (codigo_regra_fat) {
             return $http.get('/getRegra/' + codigo_regra_fat);
+        },
+        getFederalUnits : function() {
+            return $http.get('http://localhost:3000/api/v1/federal_units');
         }
 
     }
