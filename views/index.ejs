@@ -31,7 +31,22 @@
                       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Estados
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu" ng-if="states">
-                        <li><a ng-repeat="state in states" href="{{state.id}}">{{state.name}}</a></li>
+                        <li ng-repeat="state in states">
+                          <a ng-click="filterByState(state.id)">
+                            {{state.name}}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cidades
+                      <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li ng-repeat="city in cities">
+                          <a ng-click="getCityAvailableData(city.id)">
+                            {{city.name}}
+                          </a>
+                        </li>
                       </ul>
                     </div>
                   </div>

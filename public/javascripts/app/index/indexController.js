@@ -1,22 +1,18 @@
 angular.module("indexModule").controller("indexController", indexController);
 
-// indexController.$inject = ['$scope', '$timeout', '$window', 'datumApiService', 'globalVarsService'];
 indexController.$inject = ['$scope', '$timeout', '$window', 'datumApiService', 'datumApiMockService', 'globalVarsService'];
-// environmentSettings.$inject = ['globalVarsService'];
 
 // Start of Index Controller
 function indexController($scope, $timeout, $window, datumApiService, datumApiMockService, globalVarsService) {
 
+  // Upon load methods
   var development_env = 'development';
   var use_mock = false;
-  var teste = 'TESTE'
-  $scope.states = null;
-  // $scope.states = null;
+  var defaultService = datumApiService;
+  $scope.cities = [{name: 'Selecione o estado'}];
 
   globalVarsService.env().then(function(response) {
-    var defaultService = datumApiService;
     var env_vars = response.data.ENV;
-
     development_env = env_vars.ENV;
     use_mock = (env_vars.MOCK_DATUM_API == 'true');
 
@@ -24,25 +20,23 @@ function indexController($scope, $timeout, $window, datumApiService, datumApiMoc
       defaultService = datumApiMockService;
     };
 
-    defaultService.getFederalUnits(function(response) {
-      // while(!response){
-      //   console.log('Didnt respond!');
-      // };
-      // console.log(response);
+    defaultService.getFederalUnits().then(function(response) {
       $scope.states = response;
-      debugger;
-      // $scope.states = defaultService.getFederalUnits();
+      $scope.$apply();
     });
-
-    // $scope.states = [{name: 'Pastelaria'}];
-    console.log(teste);
   });
 
-  // $scope.redirectCreateImposto = function() {
-  //     $window.location.href = '/createImposto';
-  // }
+  // Reactive functions
+  $scope.filterByState = function(stateId) {
+    defaultService.getCitiesByFederalUnit(stateId).then(function(response) {
+      $scope.cities = response.city;
+      $scope.$apply();
+    })
+  }
 
-  // $scope.redirectHome = function() {
-  //     $window.location.href = '/';
-  // }
+  $scope.getCityAvailableData = function(cityId) {
+    defaultService.getAvailableDataFromCity(cityId).then(function(response) {
+      console.log(response);
+    })
+  }
 }

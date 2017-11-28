@@ -5,12 +5,31 @@ datumApiService.$inject = ['$http'];
 
 function datumApiService($http) {
   return {
-    getFederalUnits : function(callback) {
-      var url = 'http://localhost:3000/api/v1/federal_units';
-      makeCorsRequest(url, null, function(response){
-        callback(response);
-        // return response;
-      });
+    getFederalUnits : function() {
+      return new Promise (function(resolve, reject) {
+        var url = 'http://localhost:3000/api/v1/federal_units';
+        makeCorsRequest(url, null, function(response){
+          resolve(response);
+        });
+      })
+    },
+    getCitiesByFederalUnit : function(stateId) {
+      return new Promise (function(resolve, reject) {
+        var param = stateId;
+        var url = 'http://localhost:3000/api/v1/federal_units/' + param;
+        makeCorsRequest(url, null, function(response){
+          resolve(response);
+        });
+      })
+    },
+    getAvailableDataFromCity : function(cityId) {
+      return new Promise (function(resolve, reject) {
+        var param = cityId;
+        var url = 'http://localhost:3000/api/v1/cities/' + param + '/available_data';
+        makeCorsRequest(url, null, function(response){
+          resolve(response);
+        });
+      })
     }
   }
 }
@@ -54,7 +73,6 @@ function makeCorsRequest(url, optionalParams=null, callback) {
     var response = JSON.parse(text);
 
     callback(response);
-    // return response;
   };
 
   xhr.onerror = function() {
