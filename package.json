@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular-google-maps": "^2.4.1",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -20,7 +21,9 @@
     "serve-favicon": "~2.3.0"
   },
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tykuwae/faturamento.git"

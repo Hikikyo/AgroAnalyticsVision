@@ -1,4 +1,12 @@
 <% include layout-top %>
+<head>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+     }
+  </style>
+</head>
 
 <script>
     var myFunction = function() {
@@ -10,7 +18,7 @@
           "graph": $scope.graph
         }
       };
-      $scope.$apply();
+      // $scope.$apply();
     };
 </script>
 
@@ -19,6 +27,11 @@
 <script src="javascripts/app/index/datumApiService.js"></script>
 <script src="javascripts/app/index/datumApiMockService.js"></script>
 <script src="javascripts/app/global/globalVarsService.js"></script>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/app/gMapsInitialization.js"></script>>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCILeeAxIRS6Ad2fMfggzJ1vFoDlvyMrms&callback=initMap"></script>
+<!-- <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> -->
+<!-- <script src="javascripts/angular-google-maps.js"></script> -->
 
 <!-- page content -->
         <div class="right_col" role="main">
@@ -43,12 +56,85 @@
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu">
                         <li ng-repeat="city in cities">
-                          <a ng-click="getCityAvailableData(city.id)">
+                          <a ng-click="getCityAvailableData(city)">
                             {{city.name}}
                           </a>
                         </li>
                       </ul>
                     </div>
+            <h3>{{city_name}} <span style="color:{{city_ws_color}}">{{city_ws}}</span></h3>
+            <div id="map"></div>
+            <script>
+              // var street_name = $('[ng-controller="indexController"]').scope().defaultLatitude;
+              // console.log(street_name);
+              // function initMap() {
+              //   var uluru = { lat: 0, lng: 0 };
+              //   var map = new google.maps.Map(document.getElementById('map'), {
+              //     zoom: 4,
+              //     center: uluru
+              //   });
+              //   var marker = new google.maps.Marker({
+              //     position: uluru,
+              //     map: map
+              //   });
+              // }
+            </script>
+          <div ng-if="loadingWheel" class="lds-css ng-scope">
+              <div style="width:100%;height:100%" class="lds-eclipse">
+                <div></div>
+              </div>
+            <style type="text/css">@keyframes lds-eclipse {
+              0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+              }
+              50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+              }
+              100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+              }
+            }
+            @-webkit-keyframes lds-eclipse {
+              0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+              }
+              50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+              }
+              100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+              }
+            }
+            .lds-eclipse {
+              position: relative;
+            }
+            .lds-eclipse div {
+              position: absolute;
+              -webkit-animation: lds-eclipse 1s linear infinite;
+              animation: lds-eclipse 1s linear infinite;
+              width: 160px;
+              height: 160px;
+              top: 20px;
+              left: 20px;
+              border-radius: 50%;
+              box-shadow: 0 4px 0 0 #8cd0e5;
+              -webkit-transform-origin: 80px 82px;
+              transform-origin: 80px 82px;
+            }
+            .lds-eclipse {
+              width: 200px !important;
+              height: 200px !important;
+              -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+              transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+            }
+              </style>
+            </div>
                   </div>
 <!--                   <div ng-controller="plotController">
                     <div id="myDiv">Plotly chart will be drawn inside this DIV</div>
